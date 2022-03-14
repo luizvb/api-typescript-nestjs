@@ -1,12 +1,15 @@
-import { ArgumentMetadata, BadRequestException, PipeTransform } from "@nestjs/common";
+import {
+  ArgumentMetadata,
+  BadRequestException,
+  PipeTransform,
+} from '@nestjs/common';
 
-export class PlayerParametersValidators  implements PipeTransform {
-    transform(value:any, metadata: ArgumentMetadata) {
+export class PlayerParametersValidators implements PipeTransform {
+  transform(value: any, metadata: ArgumentMetadata) {
+    if (!value) throw new BadRequestException(`${metadata.data} not informed`);
 
-        if (!value) throw new BadRequestException(`${metadata.data} not informed`)
-
-        console.log('value', value)
-        console.log('metadata', metadata.type)
-        return value
-    }
+    console.log('value', value);
+    console.log('metadata', metadata.type);
+    return value;
+  }
 }

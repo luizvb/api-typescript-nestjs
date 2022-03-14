@@ -1,13 +1,16 @@
-import { IsEmail, IsNotEmpty } from 'class-validator'
+import { IsEmail, IsNotEmpty } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreatePlayerDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  readonly telefoneCelular: string;
 
-    @IsNotEmpty()
-    readonly telefoneCelular: string;
-    
-    @IsEmail()
-    readonly email: string;
-    
-    @IsNotEmpty()
-    readonly nome: string;
+  @ApiProperty()
+  @IsEmail()
+  readonly email: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  readonly nome: string;
 }
