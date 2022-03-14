@@ -8,6 +8,7 @@ import { CreatePlayerDto } from './dtos/create-player.dto';
 import { Player } from './interfaces/player.interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { PlayersRepository } from './players.repository';
 
 @Injectable()
 export class PlayersService {
@@ -17,13 +18,15 @@ export class PlayersService {
     @InjectModel('Player') private readonly PlayerModel: Model<Player>,
   ) {}
 
+  private Repository: PlayersRepository = new PlayersRepository(
+    this.PlayerModel,
+  );
   private readonly logger = new Logger(PlayersService.name);
 
   async create(CreatePlayerDto: CreatePlayerDto): Promise<Player> {
-    const player = await this.PlayerModel.findOne({
+    const player = await this.Repository.findOne({
       email: CreatePlayerDto.email,
     });
-
     if (player)
       throw new BadRequestException(`Player ${CreatePlayerDto.email} exists`);
 
@@ -34,29 +37,28 @@ export class PlayersService {
   }
 
   async update(id, createPlayerDto: CreatePlayerDto): Promise<Player> {
-    const playerFound = await this.PlayerModel.findById(id);
+    const playerFound = await this.Repository.findById(id);
     if (!playerFound) throw new NotFoundException(`Player ${id} not found`);
 
-    return this.PlayerModel.findOneAndUpdate(
-      { id: playerFound.id },
-      { nome: createPlayerDto.nome },
-    );
+    return this.Repository.updateOneById(playerFound.id, {
+      nome: createPlayerDto.nome,
+    });
   }
 
   async listAll(): Promise<Player[]> {
-    return this.PlayerModel.find({});
+    return this.Repository.findAll();
   }
 
   async listOne(id: string): Promise<Player> {
-    const playerFind = await this.PlayerModel.findById(id);
+    const playerFind = await this.Repository.findById(id);
     if (!playerFind) throw new NotFoundException(`Player ${id} not found`);
-    return this.PlayerModel.findById(id);
+    return playerFind;
   }
 
   async deleteOne(id: string): Promise<Player> {
-    const playerFound = await this.PlayerModel.findById(id);
+    const playerFound = await this.Repository.findById(id);
     if (!playerFound) throw new NotFoundException(`Player ${id} not found`);
 
-    return this.PlayerModel.findByIdAndDelete(playerFound._id);
+    return this.Repository.deleteOneById(playerFound._id);
   }
 }

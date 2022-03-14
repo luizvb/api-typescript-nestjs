@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+
+  # Application
+  core-api:
+    image: mz-api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: mz-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    networks:
+      - mzgroup
+
+  # Database - MongoDb
+  mongo:
+    image: mongo
+    container_name: mongo-dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: bind
+        source: $HOME/mongo-data
+        target: /data/db
+    networks:
+      - mzgroup
+    restart: always
+
+networks:
+  mzgroup:
+      name: mzgroup
