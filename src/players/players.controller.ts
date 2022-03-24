@@ -10,11 +10,12 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CreatePlayerDto } from './dtos/create-player.dto';
+import { UpdatePlayerDto } from './dtos/update-player.dto';
 import { Player } from './interfaces/player.interface';
-import { PlayerParametersValidators } from './pipes/players-parameters-validators';
+import { ParametersValidators } from '../common/pipes/parameters-validators';
 import { PlayersService } from './players.service';
 
-@Controller('api/v1/players')
+@Controller('api/players')
 export class PlayersController {
   constructor(private readonly playersService: PlayersService) {}
 
@@ -25,10 +26,10 @@ export class PlayersController {
   }
   @Put('/:id')
   async updatePlayer(
-    @Body() CreatePlayerDto: CreatePlayerDto,
-    @Param('id', PlayerParametersValidators) id: string,
+    @Body() UpdatePlayerDto: UpdatePlayerDto,
+    @Param('id', ParametersValidators) id: string,
   ) {
-    return this.playersService.update(id, CreatePlayerDto);
+    return this.playersService.update(id, UpdatePlayerDto);
   }
 
   @Get()
@@ -38,13 +39,13 @@ export class PlayersController {
 
   @Get('/:id')
   async listPlayerById(
-    @Param('id', PlayerParametersValidators) id: string,
+    @Param('id', ParametersValidators) id: string,
   ): Promise<Player> {
     return this.playersService.listOne(id);
   }
 
   @Delete()
-  async deletePlayer(@Param('id', PlayerParametersValidators) id: string) {
+  async deletePlayer(@Param('id', ParametersValidators) id: string) {
     return this.playersService.deleteOne(id);
   }
 }

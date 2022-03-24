@@ -1,13 +1,10 @@
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { PlayersModule } from './players/players.module';
-
-const uri = 'mongodb://localhost:27017/playerapi';
+import { TeamsModule } from './teams/teams.module';
 @Module({
-  imports: [
-    PlayersModule,
-    MongooseModule.forRoot(uri, { useNewUrlParser: true }),
-  ],
-  controllers: [],
+  imports: [ConfigModule.forRoot(), PlayersModule, TeamsModule],
 })
 export class AppModule {}
+
+// const dbUser = this.configService.get<string>('DATABASE_USER');

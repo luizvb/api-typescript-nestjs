@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreatePlayerDto {
   @ApiProperty()
   @IsNotEmpty()
-  readonly telefoneCelular: string;
+  readonly phone: string;
 
   @ApiProperty()
   @IsEmail()
@@ -12,5 +12,5 @@ export class CreatePlayerDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  readonly nome: string;
+  readonly name: string;
 }

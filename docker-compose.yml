@@ -2,7 +2,7 @@ version: "3.9"
 services:
 
   # Application
-  core-api:
+  mz-api:
     image: mz-api
     build:
       dockerfile: Dockerfile
@@ -27,6 +27,18 @@ services:
       - type: bind
         source: $HOME/mongo-data
         target: /data/db
+    networks:
+      - mzgroup
+    restart: always
+
+  # Database - MongoDb
+  postgres:
+    image: postgres
+    container_name: postgres-dev
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
     networks:
       - mzgroup
     restart: always
