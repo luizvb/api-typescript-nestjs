@@ -4,6 +4,8 @@ import { PlayersModule } from './players/players.module';
 import { TeamsModule } from './teams/teams.module';
 @Module({
   imports: [ConfigModule.forRoot(), PlayersModule, TeamsModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
 

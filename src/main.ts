@@ -26,8 +26,8 @@ const swaggerInitialize = (app) => {
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
   swaggerInitialize(app);
-  getSecrets();
-  // await app.listen(3000);
+  // getSecrets();
+  await app.listen(3000);
   console.log('LISTEN ON PORT 3000');
 };
 

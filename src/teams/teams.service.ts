@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { SchemaTeamsProvider } from 'src/common/constants';
-import { BaseService } from 'src/common/interfaces/base.service';
+import { SchemaTeamsProvider } from 'src/_shared/constants';
+import { BaseService } from 'src/_shared/interfaces/base.service';
 import { Repository } from 'typeorm';
 import { CreateTeamDto } from './dtos/create-team.dto';
 import { TeamSchema } from './interfaces/teams.schema';

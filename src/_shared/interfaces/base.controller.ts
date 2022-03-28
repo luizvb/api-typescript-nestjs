@@ -1,6 +1,6 @@
 import { Delete, Put, Body, Param } from '@nestjs/common';
 import { Get, Post } from '@nestjs/common';
-import { ParametersValidators } from 'src/common/pipes/parameters-validators';
+import { ParametersValidators } from 'src/_shared/pipes/parameters-validators';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface baseInterface {}

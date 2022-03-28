@@ -12,7 +12,7 @@ import {
 import { CreatePlayerDto } from './dtos/create-player.dto';
 import { UpdatePlayerDto } from './dtos/update-player.dto';
 import { Player } from './interfaces/player.interface';
-import { ParametersValidators } from '../common/pipes/parameters-validators';
+import { ParametersValidators } from '../_shared/pipes/parameters-validators';
 import { PlayersService } from './players.service';
 
 @Controller('api/players')

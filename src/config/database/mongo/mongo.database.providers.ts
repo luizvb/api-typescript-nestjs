@@ -1,10 +1,10 @@
 import * as mongoose from 'mongoose';
-import { connectionMongoProvider } from 'src/common/constants';
+import { connectionMongoProvider } from 'src/_shared/constants';
 
 export const databaseProviders = [
   {
     provide: connectionMongoProvider,
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect('mongodb://localhost:27017/playerapi'),
+      mongoose.connect('mongodb://mongo-dev:27017/playerapi'),
   },
 ];

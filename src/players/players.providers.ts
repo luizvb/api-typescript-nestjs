@@ -2,7 +2,7 @@ import { Connection } from 'mongoose';
 import {
   ModelPlayerProvider,
   connectionMongoProvider,
-} from 'src/common/constants';
+} from 'src/_shared/constants';
 import { PlayerSchema } from './interfaces/player.schema';
 
 export const PlayersProvider = [

@@ -1,7 +1,7 @@
 import {
   connectionTypeOrmProvider,
   SchemaTeamsProvider,
-} from 'src/common/constants';
+} from 'src/_shared/constants';
 import { Connection } from 'typeorm';
 import { TeamSchema } from './interfaces/teams.schema';
 export const TeamsProviders = [

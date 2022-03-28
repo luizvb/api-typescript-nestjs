@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { BaseController } from 'src/common/interfaces/base.controller';
+import { BaseController } from 'src/_shared/interfaces/base.controller';
 import { TeamsService } from './teams.service';
 import { Team } from './interfaces/teams.interface';
 

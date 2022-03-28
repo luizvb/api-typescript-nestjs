@@ -10,7 +10,7 @@ import { UpdatePlayerDto } from './dtos/update-player.dto';
 import { Player } from './interfaces/player.interface';
 import { Model } from 'mongoose';
 import { PlayersRepository } from './players.repository';
-import { ModelPlayerProvider } from 'src/common/constants';
+import { ModelPlayerProvider } from 'src/_shared/constants';
 
 
 @Injectable()
@@ -31,8 +31,7 @@ export class PlayersService {
     const player = await this.Repository.findOne({
       email: CreatePlayerDto.email,
     });
-    if (player)
-      throw new BadRequestException(`Player ${CreatePlayerDto.email} exists`);
+    if (player) throw new BadRequestException(`Player ${CreatePlayerDto.email} exists`);
 
     const new_player = await this.Repository.create(CreatePlayerDto);
     this.logger.log(`CriaPlayerDto: ${JSON.stringify(CreatePlayerDto)}`);
