@@ -1,7 +1,3 @@
-<p align="center">
-  <a target="blank"><img src="https://mfe-prd.mziq.com/mf-auth/41e96c18efab8ce5182c4980db5d1261.png" width="320" alt="MZ Logo" /></a>
-</p>
-
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
